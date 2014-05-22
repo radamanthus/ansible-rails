@@ -19,9 +19,11 @@ Make sure deploy password in config/database.yml is consistent with the password
 
 # Getting Started
 
+```
 ssh-keygen -R your_hostname
 cd ansible
 source ./hacking/env-setup
 ansible-playbook bootstrap.yml
 ansible-playbook site.yml
+```
 
