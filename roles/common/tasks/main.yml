@@ -1,0 +1,38 @@
+- name: Install core packages
+  action: apt pkg=$item
+  with_items:
+    - build-essential
+    - openssl
+    - libreadline6
+    - libreadline6-dev
+    - curl
+    - libcurl4-openssl-dev
+    - git-core
+    - zlib1g
+    - zlib1g-dev
+    - libssl-dev
+    - libyaml-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - autoconf
+    - libc6-dev
+    - libncurses5-dev
+    - automake
+    - libtool
+    - bison
+    - pkg-config
+    - libcurl4-openssl-dev
+    - python-software-properties
+    - apt-transport-https
+    - ca-certificates
+    - monit
+
+- name: Copy monit config file
+  copy: src=monitrc dest=/etc/monit/monitrc
+
+# TODO: restart monit
+# - name: Kill monit
+#   command: kill `ps aux | awk '/[m]onit/ {print $2}'`
+# 
+# - name: Start monit
+#   command: /usr/bin/monit -c /etc/monit/monitrc

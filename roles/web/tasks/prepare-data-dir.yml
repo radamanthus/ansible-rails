@@ -1,0 +1,28 @@
+- name: Create /data
+  sudo: yes
+  file: state=directory owner=deploy path=/data
+
+- name: Create /data/appname-admin/releases
+  file: state=directory owner=deploy path=/data/{{ app_name }}-admin/releases
+
+- name: Create /data/appname-admin/shared/config
+  file: state=directory owner=deploy path=/data/{{ app_name }}-admin/shared/config
+
+- name: Create /data/appname-admin/shared/log
+  file: state=directory owner=deploy path=/data/{{ app_name }}-admin/shared/log
+
+- name: Create /data/appname-public/releases
+  file: state=directory owner=deploy path=/data/{{ app_name }}-public/releases
+
+- name: Create /data/appname-public/shared/config
+  file: state=directory owner=deploy path=/data/{{ app_name }}-public/shared/config
+
+- name: Create /data/appname-public/shared/log
+  file: state=directory owner=deploy path=/data/{{ app_name }}-public/shared/log
+
+- name: Copy database.yml for the admin app
+  copy: src=database.yml owner=deploy dest=/data/{{ app_name }}-admin/shared/config
+
+- name: Copy database.yml for the public app
+  copy: src=database.yml owner=deploy dest=/data/{{ app_name }}-public/shared/config
+

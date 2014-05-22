@@ -1,0 +1,32 @@
+---
+# This playbook deploys the whole app stack in this site.
+# If you're running this on a newly-provisioned server, set run_bootstrap_tasks=yes
+# Otherwise, set it to no
+
+# Apply common configuration to all hosts
+- hosts: all
+  remote_user: deploy
+  sudo: yes
+  roles:
+  - common
+
+# Configure and deploy database servers
+- hosts: db
+  remote_user: deploy
+  sudo: no
+  vars:
+    - app_name: your_appname_here
+    - db_password: your_db_password_here
+    - run_bootstrap_tasks: "false"
+  roles:
+  - db
+
+# Configure and deploy the web servers
+- hosts: web
+  remote_user: deploy
+  sudo: no
+  vars:
+    - app_name: your_appname_here
+    - db_password: your_db_password_here
+  roles:
+  - web

@@ -1,0 +1,6 @@
+- name: Enable services
+  command: ufw allow $item
+  sudo: yes
+  with_items:
+    - http
+    - https

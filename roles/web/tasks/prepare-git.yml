@@ -1,0 +1,16 @@
+# Generate SSH keys and wait for the user to copy it as a deploy key to Github/Bitbucket/etc
+- name: Generate SSH keys for deploy user
+  user: name=deploy generate_ssh_key=yes ssh_key_bits=2048
+  register: deploy
+- debug: var=vagrant.stdout_lines
+
+- name: Show SSH public key
+  command: "cat /home/deploy/.ssh/id_rsa.pub"
+  register: cat
+
+- name: Wait for user to copy SSH public key
+  pause: prompt="Plase add the SSH public key above to your SCM account"
+  register: pause
+
+# TODO: Do an initial checkout
+# see: http://docs.ansible.com/git_module.html

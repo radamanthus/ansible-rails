@@ -1,0 +1,23 @@
+- name: Install Nginx
+  apt: name=nginx
+  sudo: yes
+
+- name: Remove Ubuntu default Nginx site
+  sudo: yes
+  command: rm /etc/nginx/sites-available/default removes=/etc/nginx/sites-available/default
+
+- name: Copy Nginx config file for the admin app
+  sudo: yes
+  copy: src=nginx/admin.conf owner=deploy dest=/etc/nginx/sites-available/{{ app_name }}-admin.conf force=yes
+
+- name: Enable admin site
+  sudo: yes
+  file: state=link src=/etc/nginx/sites-available/{{ app_name }}-admin.conf dest=/etc/nginx/sites-enabled/{{ app_name }}-admin.conf force=yes
+
+- name: Copy Nginx config file for the public app
+  sudo: yes
+  copy: src=nginx/public.conf owner=deploy dest=/etc/nginx/sites-available/{{ app_name }}-public.conf force=yes
+
+- name: Enable public site
+  sudo: yes
+  file: state=link src=/etc/nginx/sites-available/{{ app_name }}-public.conf dest=/etc/nginx/sites-enabled/{{ app_name }}-public.conf force=yes

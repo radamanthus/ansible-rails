@@ -1,0 +1,31 @@
+- include: firewall.yml
+
+# Add third-party repositories for Ruby and Nginx
+- name: Add BrightBox repository
+  apt_repository: repo="ppa:brightbox/ruby-ng"
+  sudo: yes
+- name: Add Nginx repository
+  apt_repository: repo="ppa:nginx/stable"
+  sudo: yes
+- name: Update repository
+  command: apt-get update
+  sudo: yes
+
+- include: ruby.yml
+
+- include: nginx.yml
+
+# Prepare /var/run/app_name directory
+- name: Create /var/run/app_name
+  sudo: yes
+  file: state=directory owner=deploy path=/var/run/{{ app_name }}
+
+- include: prepare-data-dir.yml
+
+- include: prepare-git.yml
+
+- include: puma.yml
+
+- include: app.yml
+
+- include: monit.yml
