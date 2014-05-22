@@ -1,6 +1,4 @@
-This is an open-source playbook for running an Nginx + Rails + Puma + PostgreSQL on Ubuntu 14.04
-This has been extracted from my personal project which runs an appname-admin and a appname-public application on the same database.
-If you don't need a separate admin app, just remove references to it in the nginx, puma, app, and monit-related tasks in the web role.
+This is an open-source playbook for running an Nginx + Rails + Puma + PostgreSQL on Ubuntu 14.04 This has been extracted from my personal project which runs an appname-admin and a appname-public application on the same database. If you don't need a separate admin app, just remove references to it in the nginx, puma, app, and monit-related tasks in the web role.
 
 # Playbooks
 
