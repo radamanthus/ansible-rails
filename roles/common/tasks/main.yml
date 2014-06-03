@@ -14,6 +14,7 @@
     - libyaml-dev
     - libxml2-dev
     - libxslt1-dev
+    - libsqlite3-dev
     - autoconf
     - libc6-dev
     - libncurses5-dev
