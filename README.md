@@ -24,6 +24,6 @@ ssh-keygen -R your_hostname
 cd ansible
 source ./hacking/env-setup
 ansible-playbook bootstrap.yml -vvvv --user root
-ansible-playbook site.yml
+ansible-playbook site.yml --extra-vars "run_bootstrap_tasks=true"
 ```
 
