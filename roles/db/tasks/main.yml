@@ -1,5 +1,5 @@
 - name: Install PostgreSQL
-  action: apt pkg=$item
+  action: apt pkg={{ item }}
   sudo: yes
   with_items:
     - libpq-dev

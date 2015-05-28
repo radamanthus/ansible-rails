@@ -1,6 +1,6 @@
 - include: firewall.yml
 
-# Add third-party repositories for Ruby and Nginx
+# Add third-party repositories for Ruby, Nginx, and Passenger
 - name: Add BrightBox repository
   apt_repository: repo="ppa:brightbox/ruby-ng"
   sudo: yes
@@ -24,8 +24,6 @@
 
 - include: prepare-git.yml
 
-- include: puma.yml
+- include: passenger.yml
 
 - include: app.yml
-
-- include: monit.yml

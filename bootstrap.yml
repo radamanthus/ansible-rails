@@ -1,15 +1,11 @@
 # bootstrap.yml
 # Based on http://lattejed.com/first-five-and-a-half-minutes-on-a-server-with-ansible
-# This assumes that you're booting an Ubuntu 14.04 image and that the deploy user has already been created
-# This is the case for IaaS providers like Azure that let you specify a user and upload a public key when you provision the image
 
 ---
+# - include: config.yml
 - hosts: all
-  remote_user: deploy
-  sudo: yes
   vars:
   - ubuntu_release: trusty
-  - logwatch_email: _your_email_here_
 
   tasks:
   - name: Update APT package cache
@@ -17,6 +13,9 @@
 
   - name: Upgrade APT to the lastest packages
     action: apt upgrade=safe
+
+  - name: Add HTTPS support for APT
+    apt: pkg=apt-transport-https
 
   - name: Install mosh
     action: apt pkg=mosh state=installed
@@ -26,6 +25,12 @@
 
   - name: Install fail2ban
     action: apt pkg=fail2ban state=installed
+
+  - name: Add deployment user
+    action: user name=deploy password=$deploy_password
+
+  - name: Add authorized deploy key
+    action: authorized_key user=deploy key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
   - name: Remove sudo group rights
     lineinfile: dest=/etc/sudoers regexp="^%sudo" state=absent
@@ -92,6 +97,9 @@
       - { name: "net.ipv4.conf.default.accept_redirects", value: 0 }
       - { name: "net.ipv6.conf.default.accept_redirects", value: 0 }
       - { name: "net.ipv4.icmp_echo_ignore_all", value: 1 }
+
+  - name: Change root password
+    action: user name=root password=$root_password
 
   - name: Disallow root SSH access
     action: lineinfile dest=/etc/ssh/sshd_config regexp="^PermitRootLogin" line="PermitRootLogin no" state=present

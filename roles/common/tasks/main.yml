@@ -1,5 +1,5 @@
 - name: Install core packages
-  action: apt pkg=$item
+  action: apt pkg={{ item }}
   with_items:
     - build-essential
     - openssl
@@ -26,10 +26,9 @@
     - python-software-properties
     - apt-transport-https
     - ca-certificates
-    - monit
 
-- name: Copy monit config file
-  copy: src=monitrc dest=/etc/monit/monitrc
+# - name: Copy monit config file
+#   copy: src=monitrc dest=/etc/monit/monitrc
 
 # TODO: restart monit
 # - name: Kill monit
