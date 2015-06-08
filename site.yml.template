@@ -1,5 +1,5 @@
 ---
-# This playbook deploys the whole app stack in this site.
+# This playbook deploys the whole app stack
 # If you're running this on a newly-provisioned server, set run_bootstrap_tasks=yes
 # Otherwise, set it to no
 
@@ -15,8 +15,8 @@
   remote_user: deploy
   sudo: no
   vars:
-    - app_name: "fusebrowser"
-    - db_password: "cKL72fsMPS"
+    - app_name: "app_name_here"
+    - db_password: "db_password_here"
     - run_bootstrap_tasks: "false"
   roles:
     - db
@@ -26,8 +26,8 @@
   remote_user: deploy
   sudo: no
   vars:
-    - app_name: "jackbrowser"
-    - db_password: "cKL72fsMPS"
-    - app_url: "staging.api.jackbrowser.com"
+    - app_name: "app_name_here"
+    - db_password: "db_password_here"
+    - app_url: "app_url_here"
   roles:
     - web

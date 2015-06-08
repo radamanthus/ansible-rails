@@ -19,6 +19,8 @@ Make sure deploy password in config/database.yml is consistent with the password
 
 # Getting Started
 
+Copy `site.yml.template` to `site.yml` and fill in the necessary values for `app_name`, `db_password`, and `app_url`.
+
 ```
 ssh-keygen -R your_hostname
 cd ansible
