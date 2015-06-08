@@ -29,3 +29,4 @@ ansible-playbook bootstrap.yml -vvvv --user root
 ansible-playbook site.yml --extra-vars "run_bootstrap_tasks=true"
 ```
 
+Deploy the application, and restart Nginx. If you prefer to deploy using Mina, there's a template mina deploy file for you in `misc/`.
