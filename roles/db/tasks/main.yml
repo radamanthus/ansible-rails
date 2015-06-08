@@ -1,25 +1,25 @@
-- name: Install PostgreSQL
-  action: apt pkg=$item
-  sudo: yes
-  with_items:
-    - libpq-dev
-    - postgresql-9.3
-    - python-psycopg2
-
-- name: Create deploy PostgreSQL user
-  sudo: yes
-  command: su - postgres -c "createuser deploy --superuser"
-  when: run_bootstrap_tasks == "true"
-
-- name: Set PostgreSQL password of deploy
-  sudo: yes
-  command: su - postgres -c "psql -c \"ALTER USER deploy WITH PASSWORD '{{ db_password }}'\" postgres"
-
-- name: Create app database
-  postgresql_db: name={{ app_name }}_production
-    encoding='UTF-8'
-    login_user=deploy
-    login_password={{ db_password}}
-    login_host=localhost
-  when: run_bootstrap_tasks == "true"
-
+# - name: Install PostgreSQL
+#   action: apt pkg={{ item }}
+#   sudo: yes
+#   with_items:
+#     - libpq-dev
+#     - postgresql-9.3
+#     - python-psycopg2
+#
+# - name: Create deploy PostgreSQL user
+#   sudo: yes
+#   command: su - postgres -c "createuser deploy --superuser"
+#   when: run_bootstrap_tasks == "true"
+#
+# - name: Set PostgreSQL password of deploy
+#   sudo: yes
+#   command: su - postgres -c "psql -c \"ALTER USER deploy WITH PASSWORD '{{ db_password }}'\" postgres"
+#
+# - name: Create app database
+#   postgresql_db: name={{ app_name }}_production
+#     encoding='UTF-8'
+#     login_user=deploy
+#     login_password={{ db_password}}
+#     login_host=localhost
+#   when: run_bootstrap_tasks == "true"
+#

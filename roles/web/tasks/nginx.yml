@@ -6,18 +6,10 @@
   sudo: yes
   command: rm /etc/nginx/sites-available/default removes=/etc/nginx/sites-available/default
 
-- name: Copy Nginx config file for the admin app
+- name: Create Nginx site config file
   sudo: yes
-  copy: src=nginx/admin.conf owner=deploy dest=/etc/nginx/sites-available/{{ app_name }}-admin.conf force=yes
+  template: src=site.conf owner=deploy group=deploy dest=/etc/nginx/sites-available/{{ app_name }}.conf backup=yes
 
-- name: Enable admin site
+- name: Enable site
   sudo: yes
-  file: state=link src=/etc/nginx/sites-available/{{ app_name }}-admin.conf dest=/etc/nginx/sites-enabled/{{ app_name }}-admin.conf force=yes
-
-- name: Copy Nginx config file for the public app
-  sudo: yes
-  copy: src=nginx/public.conf owner=deploy dest=/etc/nginx/sites-available/{{ app_name }}-public.conf force=yes
-
-- name: Enable public site
-  sudo: yes
-  file: state=link src=/etc/nginx/sites-available/{{ app_name }}-public.conf dest=/etc/nginx/sites-enabled/{{ app_name }}-public.conf force=yes
+  file: state=link src=/etc/nginx/sites-available/{{ app_name }}.conf dest=/etc/nginx/sites-enabled/{{ app_name }}.conf force=yes

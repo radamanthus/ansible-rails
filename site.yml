@@ -15,18 +15,19 @@
   remote_user: deploy
   sudo: no
   vars:
-    - app_name: your_appname_here
-    - db_password: your_db_password_here
+    - app_name: "fusebrowser"
+    - db_password: "cKL72fsMPS"
     - run_bootstrap_tasks: "false"
   roles:
-  - db
+    - db
 
 # Configure and deploy the web servers
 - hosts: web
   remote_user: deploy
   sudo: no
   vars:
-    - app_name: your_appname_here
-    - db_password: your_db_password_here
+    - app_name: "jackbrowser"
+    - db_password: "cKL72fsMPS"
+    - app_url: "staging.api.jackbrowser.com"
   roles:
-  - web
+    - web

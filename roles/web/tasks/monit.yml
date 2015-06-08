@@ -1,7 +1,0 @@
-- name: Create monitrc file for puma
-  template: src=puma.monitrc.j2 dest=/etc/monit/conf.d/puma.monitrc
-  sudo: yes
-
-- name: Reload monit config
-  sudo: yes
-  command: monit validate

@@ -1,9 +1,9 @@
 - name: Install Ruby
-  action: apt pkg=$item
+  action: apt pkg={{ item }}
   sudo: yes
   with_items:
-    - ruby2.1
-    - ruby2.1-dev
+    - ruby2.2
+    - ruby2.2-dev
 
 - name: Install bundler
   command: gem install bundler --no-rdoc --no-ri

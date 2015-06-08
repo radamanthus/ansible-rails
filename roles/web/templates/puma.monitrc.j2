@@ -1,9 +1,0 @@
-check process admin-puma with pidfile /data/{{ app_name }}-admin/current/tmp/puma/pid
-  group puma
-  start program = "/etc/init.d/puma start {{ app_name }}-admin"
-  stop program = "/etc/init.d/puma stop {{ app_name }}-admin"
-
-check process public-puma with pidfile /data/{{ app_name }}-public/current/tmp/puma/pid
-  group puma
-  start program = "/etc/init.d/puma start {{ app_name }}-public"
-  stop program = "/etc/init.d/puma stop {{ app_name }}-public"
