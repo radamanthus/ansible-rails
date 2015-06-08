@@ -16,7 +16,7 @@
 - include: nginx.yml
 
 # Prepare /var/run/app_name directory
-- name: Create /var/run/app_name
+- name: Create /var/run/{{ app_name }}
   sudo: yes
   file: state=directory owner=deploy path=/var/run/{{ app_name }}
 
@@ -25,5 +25,3 @@
 - include: prepare-git.yml
 
 - include: passenger.yml
-
-- include: app.yml

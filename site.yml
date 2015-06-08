@@ -26,7 +26,8 @@
   remote_user: deploy
   sudo: no
   vars:
-    - app_name: "fusebrowser"
+    - app_name: "jackbrowser"
     - db_password: "cKL72fsMPS"
+    - app_url: "staging.api.jackbrowser.com"
   roles:
     - web
